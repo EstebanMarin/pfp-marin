@@ -1,6 +1,6 @@
 package shop.services
 
-import shop.domain.authD._
+import shop.domain.authentication._
 import shop.domain.orders._
 import shop.domain.cart._
 import cats.data.NonEmptyList

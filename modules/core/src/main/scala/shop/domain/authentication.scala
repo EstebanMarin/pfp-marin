@@ -3,7 +3,7 @@ package shop.domain
 import io.estatico.newtype.macros.newtype
 import java.util.UUID
 
-object authD {
+object authentication {
   @newtype case class UserId(id: UUID)
   @newtype case class JwtToken(id: UUID)
 

@@ -2,7 +2,7 @@ package shop.domain
 
 import io.estatico.newtype.macros.newtype
 
-import shop.domain.authD._
+import shop.domain.authentication._
 
 object users {
   @newtype case class UserName(name: String)
