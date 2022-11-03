@@ -3,8 +3,9 @@ package shop
 import weaver._
 import cats.syntax.all._
 import cats.effect._
+import weaver.scalacheck.Checkers
 
-object ShopSpec extends SimpleIOSuite {
+object ShopSpec extends SimpleIOSuite with Checkers {
   val randomUUID = IO(java.util.UUID.randomUUID())
 
   // A test for side-effecting functions

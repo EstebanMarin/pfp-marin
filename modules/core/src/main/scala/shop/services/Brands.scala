@@ -1,7 +1,6 @@
-package shop
-package services
+package shop.services
 
-import shop.domain.Brand._
+import shop.domain.brand._
 
 trait Brands[F[_]] {
   def findAll: F[List[Brand]]
