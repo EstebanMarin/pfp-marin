@@ -1,6 +1,7 @@
 package shop
 
 import weaver._
+import cats.syntax.all._
 import cats.effect._
 
 object ShopSpec extends SimpleIOSuite {
@@ -11,6 +12,11 @@ object ShopSpec extends SimpleIOSuite {
     for {
       x <- randomUUID
       y <- randomUUID
-    } yield expect(x != y)
+    } yield expect(x =!= y)
   }
+
+  pureTest("pure expectations") {
+    expect(1 === 1)
+  }
+
 }
