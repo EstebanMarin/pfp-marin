@@ -24,10 +24,11 @@ final case class Checkout[F[_]: MonadThrow](
 
   def process(userId: UserId, card: Card): F[OrderID] = {
     for {
-      c: shop.domain.cart.CartTotal <- cart.get(userId)
-      its: NonEmptyList[CartItem]   <- ensureNonEmpty(c.items)
-      pid: PaymentID                <- payments.process(Payment(userId, c.total, card))
-      oid: OrderID                  <- orders.create(userId, pid, its, c.total)
+      c: CartTotal                <- cart.get(userId)
+      its: NonEmptyList[CartItem] <- ensureNonEmpty(c.items)
+      pid: PaymentID              <- payments.process(Payment(userId, c.total, card))
+      oid: OrderID                <- orders.create(userId, pid, its, c.total)
+      _                           <- cart.delete(userId)
     } yield oid
   }
 }
