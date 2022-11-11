@@ -1,7 +1,6 @@
 package shop.retries
 
 import cats.effect.Temporal
-import cats.syntax.show._
 import org.typelevel.log4cats.Logger
 import retry.RetryDetails._
 import retry._
