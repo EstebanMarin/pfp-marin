@@ -8,7 +8,6 @@ object Services {
   }
 }
 
-//trait[F[_]](val brands: Brands[F])
 sealed abstract class Services[F[_]] private (
     val brands: Brands[F]
 )
