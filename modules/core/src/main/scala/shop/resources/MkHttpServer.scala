@@ -22,7 +22,7 @@ object MkHttpServer {
       def newEmber(httpApp: HttpApp[F]): Resource[F, Server] =
         EmberServerBuilder
           .default[F]
-          .withHost(ipv4"0.0.0.0")
+          // .withHost(ipv4"0.0.0.0")
           .withPort(port"9000")
           .withHttpApp(httpApp)
           .build
