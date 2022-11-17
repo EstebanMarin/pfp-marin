@@ -6,6 +6,7 @@ import shop.resources.{ AppResources, MkHttpServer }
 import cats.effect._
 import org.http4s.HttpApp
 import org.typelevel.log4cats.slf4j.Slf4jLogger
+import dev.profunktor.redis4cats.effect.Log.NoOp._
 
 object Main extends IOApp.Simple {
   implicit val logger = Slf4jLogger.getLogger[IO]
