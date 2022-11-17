@@ -1,7 +1,7 @@
 package shop.resources
 
 import cats.effect.std.Console
-import cats.effect.{Concurrent, Resource}
+import cats.effect.{ Concurrent, Resource }
 import cats.syntax.all._
 import eu.timepit.refined.auto._
 import fs2.io.net.Network
@@ -31,7 +31,8 @@ object AppResources {
           max = 10
         )
         .evalTap(checkPostgres)
-    // new AppResources[F](mkPostgreSqlResource.) {}
-    ???
+    for {
+      postgres <- mkPostgreSqlResource
+    } yield new AppResources[F](postgres) {}
   }
 }
