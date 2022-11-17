@@ -217,7 +217,7 @@
         "platform": {
             "name": "jvm",
             "config": {
-                "home": "/Users/estebanmarin/.sdkman/candidates/java/19-librca",
+                "home": "/Users/estebanmarin/.sdkman/candidates/java/17.0.5-ms",
                 "options": [
                     "-Duser.dir=/Users/estebanmarin/47deg/pfp-marin/project"
                 ]
