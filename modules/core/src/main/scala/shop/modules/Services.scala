@@ -1,10 +1,15 @@
 package shop.modules
 
 import shop.services.Brands
-import cats.Applicative
+import cats.effect._
+import skunk._
+import shop.domain.effects.GenUUID
+
 object Services {
-  def make[F[_]: Applicative]: Services[F] = {
-    new Services[F](brands = Brands.make) {}
+  def make[F[_]: MonadCancelThrow: GenUUID](
+      postgres: Resource[F, Session[F]]
+  ): Services[F] = {
+    new Services[F](brands = Brands.make[F](postgres)) {}
   }
 }
 

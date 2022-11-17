@@ -20,6 +20,7 @@ object AppResources {
       postgres
         .use(session => session.unique(sql"select version()".query(text)))
         .flatMap(v => Logger[F].info(s"WORKING ${v}"))
+
     def mkPostgreSqlResource: Resource[F, Resource[F, Session[F]]] =
       Session
         .pooled[F](

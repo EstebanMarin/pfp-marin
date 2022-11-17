@@ -8,10 +8,8 @@ import org.http4s.server.Router
 import org.http4s.{ HttpApp, HttpRoutes }
 
 object HttpApi {
-  def make[F[_]: Async]: HttpApi[F] =
-    new HttpApi[F](
-      services = Services.make[F]
-    ) {}
+  def make[F[_]: Async](services: Services[F]): HttpApi[F] =
+    new HttpApi[F](services) {}
 }
 
 sealed abstract class HttpApi[F[_]: Async] private (
