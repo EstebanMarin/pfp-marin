@@ -2,14 +2,14 @@ package shop
 
 import shop.modules._
 import shop.resources.{ AppResources, MkHttpServer }
-
 import cats.effect._
 import org.http4s.HttpApp
 import org.typelevel.log4cats.slf4j.Slf4jLogger
 import dev.profunktor.redis4cats.effect.Log.NoOp._
+import org.typelevel.log4cats.SelfAwareStructuredLogger
 
 object Main extends IOApp.Simple {
-  implicit val logger = Slf4jLogger.getLogger[IO]
+  implicit val logger: SelfAwareStructuredLogger[IO] = Slf4jLogger.getLogger[IO]
   override def run: IO[Unit] = {
     AppResources
       .make[IO]
