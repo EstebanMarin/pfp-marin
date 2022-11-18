@@ -18,7 +18,7 @@ lazy val core = (project in file("modules/core"))
     Defaults.itSettings,
     scalafixCommonSettings,
     dockerBaseImage := "openjdk:11-jre-slim-buster",
-    dockerExposedPorts ++= Seq(8080),
+    dockerExposedPorts ++= Seq(9000),
     makeBatScripts := Seq(),
     dockerUpdateLatest := true,
     libraryDependencies ++= Seq(
