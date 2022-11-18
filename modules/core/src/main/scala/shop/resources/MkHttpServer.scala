@@ -7,9 +7,10 @@ import org.http4s.ember.server.EmberServerBuilder
 import org.http4s.server.Server
 import org.http4s.server.defaults.Banner
 import org.typelevel.log4cats.Logger
+import shop.config.types.HttpServerConfig
 
 trait MkHttpServer[F[_]] {
-  def newEmber(http: HttpApp[F]): Resource[F, Server]
+  def newEmber(cfg: HttpServerConfig, http: HttpApp[F]): Resource[F, Server]
 }
 
 object MkHttpServer {
@@ -19,11 +20,12 @@ object MkHttpServer {
   def apply[F[_]: MkHttpServer]: MkHttpServer[F] = implicitly
   implicit def forAsyncLogger[F[_]: Async: Logger]: MkHttpServer[F] =
     new MkHttpServer[F] {
-      def newEmber(httpApp: HttpApp[F]): Resource[F, Server] =
+      def newEmber(cfg: HttpServerConfig, httpApp: HttpApp[F]): Resource[F, Server] =
         EmberServerBuilder
           .default[F]
           // .withHost(ipv4"0.0.0.0")
-          .withPort(port"9000")
+//          .withPort(port"9000")
+          .withPort(cfg.port)
           .withHttpApp(httpApp)
           .build
           .evalTap(showEmberBanner[F])
